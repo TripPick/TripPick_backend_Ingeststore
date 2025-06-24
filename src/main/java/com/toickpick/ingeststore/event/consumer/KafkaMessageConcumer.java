@@ -1,6 +1,6 @@
 package com.toickpick.ingeststore.event.consumer;
 
-import com.toickpick.ingeststore.event.consumer.message.tour.TourEvent;
+import com.toickpick.ingeststore.event.consumer.message.search.SearchEvent;
 import com.toickpick.ingeststore.repository.TourCourseRepository;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -17,14 +17,14 @@ public class KafkaMessageConcumer {
     private final TourCourseRepository tourCourseRepository;
 
     @KafkaListener(
-            topics = TourEvent.Topic,
+            topics = SearchEvent.Topic,
             properties = {
                     JsonDeserializer.VALUE_DEFAULT_TYPE
-                            + ":com.toickpick.ingeststore.event.consumer.message.tour.TourEvent"
+                            + ":com.toickpick.ingeststore.event.consumer.message.search.SearchEvent"
             }
     )
-    void handleTourinfoEvent(TourEvent event, Acknowledgment ack) {
-        log.info("TourEvent 처리. userId={}",event.getTourCourse());
-        tourCourseRepository.save(event.getTourCourse());
+    void handleTourinfoEvent(SearchEvent event, Acknowledgment ack) {
+        log.info("SearchEvent 처리. contentId={}",event.getSearch());
+        tourCourseRepository.save(event.getSearch());
     }
 }

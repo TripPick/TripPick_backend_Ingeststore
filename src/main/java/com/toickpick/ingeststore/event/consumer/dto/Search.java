@@ -1,4 +1,4 @@
-package com.toickpick.ingeststore.event.consumer;
+package com.toickpick.ingeststore.event.consumer.dto;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
@@ -10,13 +10,13 @@ import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 
 @Entity
-@Table(name = "tourCourse")
+@Table(name = "search")
 @Getter
 @Setter
 @NoArgsConstructor
 @AllArgsConstructor
 @Builder
-public class TourCourse {
+public class Search {
 
     @Id
     @Column(name = "contentId")
